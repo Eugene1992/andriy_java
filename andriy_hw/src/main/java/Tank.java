@@ -13,7 +13,7 @@ public class Tank extends Military {
         double chance = random.nextDouble() * 100;
         int totalAttack = attack;
         if (chance < stuck) {
-            totalAttack = attack * 10;
+            totalAttack = attack * 0;
         }
         military.hp = military.hp - totalAttack;
     }

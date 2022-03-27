@@ -61,11 +61,10 @@ public abstract class Military {
     public void setRotateChance(int rotateChance) {
         this.rotateChance = rotateChance;
     }
-
-    public void attack(Infantry enemy) {
+    public void attack(Military enemy) {
         Random random = new Random();
         int chance = (int) (random.nextDouble() * 100);
-       if (chance > missChance) {
+        if (chance > missChance) {
             int damage = this.attack - this.armor;
             enemy.hp = enemy.hp - damage;
             System.out.println(this.name + " hit for " + damage);
@@ -75,5 +74,7 @@ public abstract class Military {
     }
 
 
-    public abstract void attack(Military military);
+    boolean isAlive() {
+        return hp>0;
+    }
 }

@@ -5,28 +5,33 @@ public class Army {
 
     private ArrayList<Military> squad;
 
-
-
-  /* public void groupAttack(Army enemy) {
-        for (Military military : squad) {
-            Military enemyMilitary = enemy.getRandomMilitary();
+    public Army(ArrayList<Military> squad) {
+        this.squad = squad;
+    }
+        //групова атака
+    public void groupAttack(Army enemyArmy) {
+        for (Military military  : squad) {
+            Military enemyMilitary = enemyArmy.getRandomMilitary();
             enemyMilitary.attack(enemyMilitary);
+
+            if(enemyMilitary.isAlive()){
+                enemyArmy.squad.remove(enemyMilitary);
+            }
         }
-    }*/
-
-
-    /*public Military getRandomMilitary() {
+    }
+        //рандомна аката
+    public Military getRandomMilitary() {
         Random rand = new Random(squad.size());
         int militaryIndex = rand.nextInt();
         return squad.get(militaryIndex);
-    }*/
+    }
 
-    public Military getRandomRotate() {
+  /*  public Military getRandomRotate() {
         Random random = new Random();
         int randomRotate = random.nextInt();
 
-        return null;
-    }
+       return randomRotate;
+    }*/
 
     boolean isAlive() {
         return squad.isEmpty();

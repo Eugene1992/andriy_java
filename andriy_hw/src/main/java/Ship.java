@@ -14,7 +14,7 @@ public class Ship extends Military{
             double chance = random.nextDouble() * 100;
             int totalAttack = attack;
             if (chance < HoleChance) {
-                totalAttack = attack * 10;
+                totalAttack = attack * 3;
             }
             military.hp = military.hp - totalAttack;
         }

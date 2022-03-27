@@ -9,7 +9,7 @@ public class BattleArmy {
     public void fightReady(){
         while(!armyFirst.isAlive() || !armySecond.isAlive()){
             armyFirst.groupAttack(armySecond);
-                System.out.println("armyFirst" + "attack" + armySecond);
+                System.out.println(armyFirst + "attack" + armySecond);
             armySecond.groupAttack(armyFirst);
                 System.out.println(armyFirst + "attack" + armySecond);
         }
