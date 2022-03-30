@@ -21,17 +21,12 @@ public class Army {
     }
         //рандомна аката
     public Military getRandomMilitary() {
-        Random rand = new Random(squad.size());
-        int militaryIndex = rand.nextInt();
+        Random rand = new Random();
+        int max = squad.size();
+        int militaryIndex = (int) (Math.random() * max);
         return squad.get(militaryIndex);
     }
 
-  /*  public Military getRandomRotate() {
-        Random random = new Random();
-        int randomRotate = random.nextInt();
-
-       return randomRotate;
-    }*/
 
     boolean isAlive() {
         return squad.isEmpty();

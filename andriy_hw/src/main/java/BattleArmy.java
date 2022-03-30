@@ -6,14 +6,19 @@ public class BattleArmy {
         this.armyFirst = armyFirst;
         this.armySecond = armySecond;
     }
-    public void fightReady(){
-        while(!armyFirst.isAlive() || !armySecond.isAlive()){
-            armyFirst.groupAttack(armySecond);
-                System.out.println(armyFirst + "attack" + armySecond);
-            armySecond.groupAttack(armyFirst);
-                System.out.println(armyFirst + "attack" + armySecond);
-        }
 
+    public void fightReady() {
+        while (armyFirst.isAlive() && armySecond.isAlive()) {
+            armyFirst.groupAttack(armySecond);
+            System.out.println("attack first");
+            armySecond.groupAttack(armyFirst);
+            System.out.println("attack second");
+        }
+        if(!armyFirst.isAlive()){
+            System.out.println("second win");
+        }else{
+            System.out.println("first win");
+        }
     }
 
 }
