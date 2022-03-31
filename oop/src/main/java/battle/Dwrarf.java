@@ -20,4 +20,9 @@ public class Dwrarf extends Hero {
             hero.hp = hero.hp - attack;
         }
     }
+
+    @Override
+    void specialAttack() {
+
+    }
 }

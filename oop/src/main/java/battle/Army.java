@@ -1,22 +1,41 @@
 package battle;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Army {
 
+    private String name;
+    private ArrayList<Hero> squad;
 
+    public Army(String name, ArrayList<Hero> squad) {
+        this.name = name;
+        this.squad = squad;
+    }
 
-    // varargs
-    public void groupAttack(Hero enemy, Hero... squad) {
+    public String getName() {
+        return name;
+    }
+
+    public void groupAttack(Army enemyArmy) {
         for (Hero hero : squad) {
-            hero.attack(enemy);
+            Hero enemyHero = enemyArmy.getRandomHero();
+            hero.attack(enemyHero);
+
+            if (!enemyHero.isAlive()) {
+                enemyArmy.squad.remove(enemyHero);
+            }
         }
     }
 
-    // varargs
-    public void groupAttack(Hero enemy, Human human, Elf elf, Dwrarf dwrarf) {
-        human.attack(enemy);
-        elf.attack(enemy);
-        dwrarf.attack(enemy);
+    public Hero getRandomHero() {
+        Random random = new Random(squad.size());
+        int heroIndex = random.nextInt();
+
+        return squad.get(heroIndex);
+    }
+
+    public boolean isAlive() {
+        return !squad.isEmpty();
     }
 }
