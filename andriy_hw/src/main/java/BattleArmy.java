@@ -14,9 +14,9 @@ public class BattleArmy {
             armySecond.groupAttack(armyFirst);
                 System.out.println("attack second");
         }
-        if(armyFirst.isAlive() && !armySecond.isAlive()){
+        if(armyFirst.isAlive() && !armySecond.isAlive()) {
             System.out.println("first win");
-        }else{
+        } else {
             System.out.println("second win");
         }
     }

@@ -61,6 +61,7 @@ public abstract class Military {
     public void setRotateChance(int rotateChance) {
         this.rotateChance = rotateChance;
     }
+    
     public void attack(Military enemy) {
         Random random = new Random();
         int chance = (int) (random.nextDouble() * 100);

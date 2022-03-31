@@ -14,18 +14,17 @@ public class Army {
             Military enemyMilitary = enemyArmy.getRandomMilitary();
             military.attack(enemyMilitary);
 
-            if(!enemyMilitary.isAlive()){
+            if(!enemyMilitary.isAlive()) {
                 enemyArmy.squad.remove(enemyMilitary);
             }
-        }}
+        }
+    }
         //рандомна аката
     public Military getRandomMilitary() {
         int max = squad.size();
         int militaryIndex = (int) (Math.random() * max);
         return squad.get(militaryIndex);
     }
-
-
 
     boolean isAlive() {
         return squad.isEmpty();

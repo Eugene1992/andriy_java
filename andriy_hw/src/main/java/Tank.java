@@ -3,8 +3,10 @@ import java.util.Random;
 public class Tank extends Military {
 
         private int stuck;
+
     public Tank(String name, int hp, int attack, int armor, int missChance, int rotateChance) {
         super(name, hp, attack, armor, missChance, rotateChance);
+        this.stuck = stuck;
     }
 
     @Override
