@@ -2,7 +2,6 @@ import java.util.ArrayList;
 
 public class Test {
     public static void main(String[] args) {
-
         Military ork = new Infantry("Ork",50,3,20,20,5);
         Military zsu = new Infantry("zsu",100,7,40,5,25);
         Military bandera = new Infantry("Bandera",2500000,80,40,2,25);

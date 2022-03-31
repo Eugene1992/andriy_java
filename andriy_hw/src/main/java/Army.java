@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Army {
 
@@ -8,7 +7,7 @@ public class Army {
     public Army(ArrayList<Military> squad) {
         this.squad = squad;
     }
-        //групова атака
+
     public void groupAttack(Army enemyArmy) {
         for (Military military  : squad) {
             Military enemyMilitary = enemyArmy.getRandomMilitary();
@@ -19,7 +18,7 @@ public class Army {
             }
         }
     }
-        //рандомна аката
+
     public Military getRandomMilitary() {
         int max = squad.size();
         int militaryIndex = (int) (Math.random() * max);

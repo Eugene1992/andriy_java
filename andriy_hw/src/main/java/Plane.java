@@ -3,6 +3,7 @@ import java.util.Random;
 public class Plane extends Military {
 
     private int nuclearWeapon;
+
     public Plane(String name, int hp, int attack, int armor, int missChance, int rotateChance) {
         super(name, hp, attack, armor, missChance, rotateChance);
         this.nuclearWeapon = nuclearWeapon;
