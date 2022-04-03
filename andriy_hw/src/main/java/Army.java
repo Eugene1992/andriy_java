@@ -22,11 +22,22 @@ public class Army {
     public Military getRandomMilitary() {
         int max = squad.size();
         int militaryIndex = (int) (Math.random() * max);
-        return squad.get(militaryIndex);
+        Military military = null;
+        try {
+            military = squad.get(militaryIndex);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return military;
     }
 
     boolean isAlive() {
-        return squad.isEmpty();
+        return !squad.isEmpty();
+    }
+
+    public ArrayList<Military> getSquad() {
+        return squad;
     }
 }
 

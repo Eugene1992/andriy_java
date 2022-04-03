@@ -7,15 +7,13 @@ public abstract class Military {
     protected int attack;
     protected int armor;
     protected int missChance;
-    protected int rotateChance;
 
-    public Military(String name, int hp, int attack, int armor, int missChance, int rotateChance) {
+    public Military(String name, int hp, int attack, int armor, int missChance) {
         this.name = name;
         this.hp = hp;
         this.attack = attack;
         this.armor = armor;
         this.missChance = missChance;
-        this.rotateChance = rotateChance;
     }
 
     public String getName() {
@@ -54,14 +52,6 @@ public abstract class Military {
         this.missChance = missChance;
     }
 
-    public int getRotateChance() {
-        return rotateChance;
-    }
-
-    public void setRotateChance(int rotateChance) {
-        this.rotateChance = rotateChance;
-    }
-
     public void attack(Military enemy) {
         Random random = new Random();
         int chance = (int) (random.nextDouble() * 100);
@@ -73,7 +63,6 @@ public abstract class Military {
             System.out.println(name + " is missed!");
         }
     }
-
     boolean isAlive() {
         return hp>0;
     }
