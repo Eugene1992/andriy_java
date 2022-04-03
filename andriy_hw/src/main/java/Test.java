@@ -22,7 +22,7 @@ public class Test {
 
         Army rusnya = new Army(orkSquad);
 
-        BattleArmy battle = new BattleArmy(ukraine,rusnya);
+        BattleArmy battle = new BattleArmy(ukraine, rusnya);
         battle.fightReady();
 
     }

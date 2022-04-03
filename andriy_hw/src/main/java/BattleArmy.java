@@ -1,4 +1,5 @@
 public class BattleArmy {
+
     private Army armyFirst;
     private Army armySecond;
 
@@ -15,7 +16,7 @@ public class BattleArmy {
             System.out.println("SA: " + armySecond.getSquad().size());
         }
 
-        if(armyFirst.isAlive() && !armySecond.isAlive()) {
+        if (armyFirst.isAlive() && !armySecond.isAlive()) {
             System.out.println("first win");
         } else {
             System.out.println("second win");
