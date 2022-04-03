@@ -10,9 +10,9 @@ public class BattleArmy {
     public void fightReady() {
         while (armyFirst.isAlive() && armySecond.isAlive()) {
             armyFirst.groupAttack(armySecond);
-                System.out.println("attack first");
             armySecond.groupAttack(armyFirst);
-                System.out.println("attack second");
+            System.out.println("FA: " + armyFirst.getSquad().size());
+            System.out.println("SA: " + armySecond.getSquad().size());
         }
 
         if(armyFirst.isAlive() && !armySecond.isAlive()) {
@@ -21,5 +21,4 @@ public class BattleArmy {
             System.out.println("second win");
         }
     }
-
 }
