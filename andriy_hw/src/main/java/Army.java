@@ -9,11 +9,11 @@ public class Army {
     }
 
     public void groupAttack(Army enemyArmy) {
-        for (Military military  : squad) {
+        for (Military military : squad) {
             Military enemyMilitary = enemyArmy.getRandomMilitary();
             military.attack(enemyMilitary);
 
-            if(!enemyMilitary.isAlive()) {
+            if (!enemyMilitary.isAlive()) {
                 enemyArmy.squad.remove(enemyMilitary);
             }
         }

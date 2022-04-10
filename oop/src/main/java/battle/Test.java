@@ -1,36 +1,33 @@
 package battle;
 
-import battle.Human;
+import java.util.ArrayList;
 
 public class Test {
     public static void main(String[] args) {
-        Hero tom = new Elf("Tom", 100, 30, 30);
+        Hero tom = new DarkElf("Tom", 100, 30, 30);
         Hero arnold = new Dwrarf("Arnold", 300, 40, 5);
         Hero vladimir = new Human("Vladimir", 200, 25);
 
-        Elf sara = new Elf("Sara", 200, 20, 10);
+        ArrayList<Hero> ukraineArmySquad = new ArrayList<>();
+        ukraineArmySquad.add(tom);
+        ukraineArmySquad.add(arnold);
+        ukraineArmySquad.add(vladimir);
 
-        tom.attack(sara);
-        arnold.attack(sara);
-        vladimir.attack(sara);
+        Army ukraine = new Army("Ukraine", ukraineArmySquad);
 
-        Army army = new Army();
-        Hero[] squad = {tom, arnold, vladimir};
+        Hero vanya1 = new Human("Vanya 1", 50, 10);
+        Hero vanya2 = new Human("Vanya 1", 50, 10);
+        Hero vanya3 = new Human("Vanya 1", 50, 10);
 
-        Hero bill = new Elf("Bill", 100, 30, 30);
+        ArrayList<Hero> rusnyaArmySquad = new ArrayList<>();
+        rusnyaArmySquad.add(vanya1);
+        rusnyaArmySquad.add(vanya2);
+        rusnyaArmySquad.add(vanya3);
 
-        army.groupAttack(sara, tom, arnold, vladimir, bill);
+        Army rusnya = new Army("Rusnya", rusnyaArmySquad);
 
-        army.groupAttack(sara, tom, arnold, vladimir);
-
-        Hero darkElf = new DarkElf("Winston", 100, 30, 30);
-        Elf darkElff = new DarkElf("Winston", 100, 30, 30);
-        DarkElf darkElfff = new DarkElf("Winston", 100, 30, 30);
-
-        // type cast
-        DarkElf castedHero = (DarkElf) darkElf;
-
-        doSomething(castedHero);
+        TwoArmyBattle battle = new TwoArmyBattle(ukraine, rusnya);
+        battle.startFight();
     }
 
     static void doSomething(Elf someElf) {

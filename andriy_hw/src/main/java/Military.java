@@ -64,6 +64,6 @@ public abstract class Military {
         }
     }
     boolean isAlive() {
-        return hp>0;
+        return hp > 0;
     }
 }

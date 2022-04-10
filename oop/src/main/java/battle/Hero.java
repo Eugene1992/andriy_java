@@ -1,6 +1,6 @@
 package battle;
 
-public class Hero {
+public abstract class Hero {
     protected String name;
     protected int hp;
     protected int attack;
@@ -22,5 +22,11 @@ public class Hero {
     void attack(Hero hero) {
         System.out.println("Attack from Hero class");
         hero.hp = hero.hp - attack;
+    }
+
+    abstract void specialAttack();
+
+    public boolean isAlive() {
+        return hp > 0;
     }
 }
