@@ -33,7 +33,6 @@ public class Human {
     public static void main(String[] args) {
         Human human1 = new Human("Andriy", 18, false);
         Human human2 = new Human("Yevhen", 29, true);
-        Human human3 = new Human("Taras", 26);
 
         human1.sayHello();
         human2.sayHello();
