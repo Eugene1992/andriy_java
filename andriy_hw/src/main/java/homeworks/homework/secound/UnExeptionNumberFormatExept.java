@@ -1,4 +1,4 @@
-package homeworks.homework.firstUncheked;
+package homeworks.homework.secound;
 
 import java.util.Scanner;
 
@@ -15,7 +15,7 @@ public class UnExeptionNumberFormatExept {
                 number = Integer.parseInt(sc.next());
                 System.out.println("You entered: " + number);
                 break;
-            } catch (NumberFormatException e) {
+            } catch (NumberFormatException exception) {
                 System.out.println("NumberFormatException occurred");
             }
         }

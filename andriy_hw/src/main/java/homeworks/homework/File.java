@@ -4,17 +4,17 @@ public class File {
     public static void main(String[] args) {
 
         Abv file = null;
-//завдання 3
+
         try {
             file.show();
-        } catch (ArrayIndexOutOfBoundsException e) {
-            e.printStackTrace();
-        } catch (IndexOutOfBoundsException ex) {
-            ex.printStackTrace();
-        } catch (RuntimeException exp) {
-            exp.printStackTrace();
-        } catch (Exception expt) {
-            expt.printStackTrace();
+        } catch (ArrayIndexOutOfBoundsException exception) {
+            exception.printStackTrace();
+        } catch (IndexOutOfBoundsException exception) {
+            exception.printStackTrace();
+        } catch (RuntimeException exception) {
+            exception.printStackTrace();
+        } catch (Exception exception) {
+            exception.printStackTrace();
         }
     }
 }

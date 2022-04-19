@@ -1,4 +1,4 @@
-package homeworks.inner;
+package homeworks.homework.secound.inner;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -20,13 +20,13 @@ public class Catalog {
 
     public static class Book {
         private String name;
-        private String catalogID;
+        private String catalogId;
         private boolean isTaken;
         private StringBuilder history;
 
-        public Book(String name, String catalogID) {
+        public Book(String name, String catalogId) {
             this.name = name;
-            this.catalogID = catalogID;
+            this.catalogId = catalogId;
             isTaken = false;
             history = new StringBuilder();
         }
@@ -36,14 +36,15 @@ public class Catalog {
         public String takeBook(String readerId, String bookName) {
             for (Book currentBook : books) {
                 if (currentBook.name.equals(bookName)) {
-                    if (currentBook.isTaken) continue;
-                    else {
+                    if (currentBook.isTaken) {
+                        continue;
+                    } else {
                         currentBook.isTaken = true;
                         currentBook.history.append(readerId);
                         currentBook.history.append(" take ");
                         currentBook.history.append(new Date());
                         currentBook.history.append("\r\n");
-                        return currentBook.catalogID;
+                        return currentBook.catalogId;
                     }
                 }
             }
@@ -54,7 +55,7 @@ public class Catalog {
     class ReturnBook {
         public void turn(String readerId, String bookId) {
             for (Book currentBook : books) {
-                if (currentBook.catalogID.equals(bookId)) {
+                if (currentBook.catalogId.equals(bookId)) {
                     if (currentBook.isTaken) {
                         currentBook.isTaken = false;
                         currentBook.history.append(readerId);

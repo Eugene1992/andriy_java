@@ -14,7 +14,7 @@ public class ExeprionExample {
     void foo(int exeption) throws FileNotFoundException {
         try {
             fd(exeption);
-        } catch (IOException e) {
+        } catch (IOException exception) {
             System.out.println("не весь стектрейс");
         } finally {
             System.out.println("finally");

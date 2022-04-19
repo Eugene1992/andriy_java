@@ -1,4 +1,4 @@
-package homeworks.inner;
+package homeworks.homework.secound.inner;
 
 import java.util.ArrayList;
 

@@ -15,9 +15,6 @@ public class Army {
             Military enemyMilitary = enemyArmy.getRandomMilitary();
             military.attack(enemyMilitary);
 
-            if (!enemyMilitary.isAlive()) {
-                enemyArmy.squad.remove(enemyMilitary);
-            }
         }
     }
 
@@ -27,8 +24,8 @@ public class Army {
         Military military = null;
         try {
             military = squad.get(militaryIndex);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception exception) {
+            exception.printStackTrace();
         }
 
         return military;

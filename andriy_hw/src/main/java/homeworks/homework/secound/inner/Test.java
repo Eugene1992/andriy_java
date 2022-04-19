@@ -1,4 +1,4 @@
-package homeworks.inner;
+package homeworks.homework.secound.inner;
 
 
 import java.util.Scanner;
@@ -6,24 +6,25 @@ import java.util.Scanner;
 public class Test {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-            /*Catalog catalog = new Catalog();
-            catalog.books.add(new Catalog.Book("Book1", "1"));
-            catalog.books.add(new Catalog.Book("Book2", "2"));
-            catalog.books.add(new Catalog.Book("Book3", "3"));
-            System.out.println("What you wanna do?");
-            System.out.println("1-Take book" + "2-Return book");
-            String whatYouDo = scanner.nextLine();
-            if (whatYouDo.equals("1")) {
-                System.out.println("Write name of book");
-                String bookName = scanner.nextLine();
-                Catalog.TakeBook take = catalog.new TakeBook();
-                take.takeBook("1", bookName);
-                System.out.println(catalog);
-            } else {
-                Catalog.ReturnBook returnBook = catalog.new ReturnBook();
-                returnBook.turn("0", "1");
-                System.out.println(catalog);
-            }*/
+        Catalog catalog = new Catalog();
+        catalog.books.add(new Catalog.Book("Book1", "1"));
+        catalog.books.add(new Catalog.Book("Book2", "2"));
+        catalog.books.add(new Catalog.Book("Book3", "3"));
+        System.out.println("What you wanna do?");
+        System.out.println("1-Take book" + "2-Return book");
+        String whatYouDo = scanner.nextLine();
+        if (whatYouDo.equals("1")) {
+            System.out.println("Write name of book");
+            String bookName = scanner.nextLine();
+            Catalog.TakeBook take = catalog.new TakeBook();
+            take.takeBook("1", bookName);
+            System.out.println(catalog);
+        } else {
+            Catalog.ReturnBook returnBook = catalog.new ReturnBook();
+            returnBook.turn("0", "1");
+            System.out.println(catalog);
+        }
+
         Mobile mobile = new Mobile();
         System.out.println("What you wanna do?");
         System.out.println("1-Characterictik phone?" + "2-Model Phone" + "3-what cost");
@@ -44,9 +45,11 @@ public class Test {
         } else {
             System.out.println("Please correctly select number");
         }
-        /*Park park = new Park();
+
+        Park park = new Park();
         System.out.println("What you wanna do?");
-        System.out.println("1-What the time you work?" + "2-Access atraction" + "3-what cost" + "4-Select and give your budget and we recomend you what atract select");
+        System.out.println("1-What the time you work?" + " " + "2-Access atraction" + " " + "3-what cost");
+        System.out.println("4-Select and give your budget and we recomend you what atract select");
         String whatYouWannaDo = scanner.nextLine();
         park.actractions.add(new Park.Actraction("Swings", Park.Type.LITE, "15 min", 300));
         park.actractions.add(new Park.Actraction("Roller coaster", Park.Type.EXTREAM, "10", 500));
@@ -68,7 +71,7 @@ public class Test {
             booking.buySession(moneyHaveCustomer);
         } else {
             System.out.println("Write a correct wariable");
-        }*/
+        }
 
     }
 }

@@ -40,8 +40,8 @@ public class Test {
     }
 
     void allAnimal(List<Animal> animals) {
-        for (Animal s : animals) {
-            s.say();
+        for (Animal animal : animals) {
+            animal.say();
         }
     }
 

@@ -1,4 +1,4 @@
-package homeworks.homework.firstUncheked;
+package homeworks.homework.secound;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -9,8 +9,8 @@ public class ExeptionNullPoint {
             FileReader file = new FileReader("pom.xml");
             file = null;
             file.read();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException exception) {
+            exception.printStackTrace();
         }
     }
 }

@@ -1,11 +1,12 @@
-package homeworks.homework.firstUncheked;
+package homeworks.homework.secound;
 
 public class UnExeptionStackOverFlow {
     public static void recursivePrint(int num) {
-        if (num == 0)
+        if (num == 0) {
             return;
-        else
+        } else {
             recursivePrint(++num);
+        }
     }
 
     public static void main(String[] args) {
