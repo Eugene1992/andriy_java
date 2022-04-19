@@ -31,5 +31,3 @@ public class Ship extends Military {
         }
     }
 }
-
-

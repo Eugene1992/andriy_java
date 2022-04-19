@@ -17,7 +17,6 @@ public class Mobile {
         private int charge;
         private int operative;
 
-
         public Model(String name, Mobile.Type type, int money, int charge, int operative) {
             this.name = name;
             this.type = type;
@@ -27,7 +26,6 @@ public class Mobile {
         }
 
     }
-
 
     class Cost {
         public void moneyCost() {

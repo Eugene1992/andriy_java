@@ -1,6 +1,5 @@
 package homeworks.homework.inner;
 
-
 import java.util.Scanner;
 
 public class Test {

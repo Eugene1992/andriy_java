@@ -3,7 +3,6 @@ package homeworks.homework.inner;
 import java.util.ArrayList;
 import java.util.Date;
 
-
 public class Catalog {
     protected ArrayList<Book> books = new ArrayList<>();
 
@@ -70,7 +69,3 @@ public class Catalog {
         }
     }
 }
-
-
-
-
