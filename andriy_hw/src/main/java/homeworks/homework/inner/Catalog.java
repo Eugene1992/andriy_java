@@ -1,4 +1,4 @@
-package homeworks.homework.secound.inner;
+package homeworks.homework.inner;
 
 import java.util.ArrayList;
 import java.util.Date;

@@ -1,4 +1,4 @@
-package homeworks.homework.secound.inner;
+package homeworks.homework.inner;
 
 
 import java.util.Scanner;
@@ -50,7 +50,7 @@ public class Test {
         System.out.println("What you wanna do?");
         System.out.println("1-What the time you work?" + " " + "2-Access atraction" + " " + "3-what cost");
         System.out.println("4-Select and give your budget and we recomend you what atract select");
-        String whatYouWannaDo = scanner.nextLine();
+        String whatDo = scanner.nextLine();
         park.actractions.add(new Park.Actraction("Swings", Park.Type.LITE, "15 min", 300));
         park.actractions.add(new Park.Actraction("Roller coaster", Park.Type.EXTREAM, "10", 500));
         park.actractions.add(new Park.Actraction("Train", Park.Type.LITE, "12", 300));
