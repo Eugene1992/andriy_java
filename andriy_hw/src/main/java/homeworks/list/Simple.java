@@ -1,12 +1,11 @@
 package homeworks.list;
 
-public interface Simple<E> extends/*наслідує */ Iterable<E> // щоб працювати з аррайліст
-{
+public interface Simple<E> extends Iterable<E> {
     void add(E element);
 
     void add(int index, E element);
 
-    boolean remove(Object o);
+    boolean remove(Object object);
 
     void remove(int index);
 
@@ -20,7 +19,7 @@ public interface Simple<E> extends/*наслідує */ Iterable<E> // щоб п
 
     void clear();
 
-    boolean contains(E e);
+    boolean contains(E element);
 
-    int indexOf(Object o);
+    int indexOf(Object object);
 }

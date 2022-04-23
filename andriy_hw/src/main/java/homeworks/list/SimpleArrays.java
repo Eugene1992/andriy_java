@@ -9,11 +9,9 @@ public class SimpleArrays<E> implements Simple<E> {
 
     private static final int DEFAULT_CAPACITY = 10;
 
-
     SimpleArrays() {
         values = (E[]) new Object[DEFAULT_CAPACITY];
     }
-
 
     @Override
     public void add(E element) {
@@ -29,20 +27,21 @@ public class SimpleArrays<E> implements Simple<E> {
     public void add(int index, E element) {
         if (index > 0) {
 
-            for (int i = values.length; i > index; i--) {
-                values[i] = values[i - 1];
+            for (int integer = values.length; integer > index; integer--) {
+                values[integer] = values[integer - 1];
             }
             values[index] = element;
         }
     }
 
     @Override
-    public boolean remove(Object o) {
-        for (int i = 0; i < values.length; i++) {
-            if (o.equals(values[i])) {
-                for (int k = i; k < values.length - 1; k++) values[k] = values[k + 1];
-                values[values.length] = null;
-
+    public boolean remove(Object object) {
+        for (int integer = 0; integer < values.length; integer++) {
+            if (object.equals(values[integer])) {
+                for (int temp = integer; temp < values.length - 1; temp++) {
+                    values[temp] = values[temp + 1];
+                    values[values.length] = null;
+                }
                 return true;
             }
         }
@@ -71,8 +70,8 @@ public class SimpleArrays<E> implements Simple<E> {
     public void set(int index, E element) {
         try {
             values[index] = element;
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println("can`t set a word.. Index out of range. Position: " + e.getMessage());
+        } catch (IndexOutOfBoundsException elementCatch) {
+            System.out.println("can`t set a word.. Index out of range. Position: " + elementCatch.getMessage());
         }
     }
 
@@ -87,9 +86,9 @@ public class SimpleArrays<E> implements Simple<E> {
     }
 
     @Override
-    public boolean contains(E e) {
-        for (int i = 0; i < size; i++) {
-            if (values.equals(values[i])) {
+    public boolean contains(E element) {
+        for (int integer = 0; integer < size; integer++) {
+            if (values.equals(values[integer])) {
                 return true;
             }
         }
@@ -103,17 +102,17 @@ public class SimpleArrays<E> implements Simple<E> {
     }
 
     @Override
-    public int indexOf(Object o) {
-        if (o == null) {
-            for (int i = 0; i < values.length; i++) {
-                if (values[i] == null) {
-                    return i;
+    public int indexOf(Object object) {
+        if (object == null) {
+            for (int integer = 0; integer < values.length; integer++) {
+                if (values[integer] == null) {
+                    return integer;
                 }
             }
         } else {
-            for (int i = 0; i < values.length; i++) {
-                if (o.equals(values[i])) {
-                    return i;
+            for (int integer = 0; integer < values.length; integer++) {
+                if (object.equals(values[integer])) {
+                    return integer;
                 }
             }
         }

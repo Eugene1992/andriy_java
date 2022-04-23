@@ -7,8 +7,8 @@ public class Test {
         myList.add("2");
         myList.add("3");
 
-        for (String s : myList) {
-            System.out.println(s);
+        for (String list : myList) {
+            System.out.println(list);
         }
     }
 }

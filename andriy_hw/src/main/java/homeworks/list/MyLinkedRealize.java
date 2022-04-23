@@ -3,23 +3,23 @@ package homeworks.list;
 import java.util.Iterator;
 import java.util.Objects;
 
-public class LinkedRealization<E> implements Simple<E> {
+public class MyLinkedRealize<E> implements Simple<E> {
     static class Node<E> {
         E element;
-        Node<E> next;
+        MyLinkedRealize.Node<E> next;
 
         public Node(E element) {
             this.element = element;
         }
     }
 
-    private Node<E> first;
-    private Node<E> last;
+    private MyLinkedRealize.Node<E> first;
+    private MyLinkedRealize.Node<E> last;
     private int size;
 
     @Override
     public void add(E element) {
-        Node<E> newNode = new Node<>(element);
+        MyLinkedRealize.Node<E> newNode = new MyLinkedRealize.Node<>(element);
         if (first == null) {
             first = last = newNode;
         } else {
@@ -31,8 +31,8 @@ public class LinkedRealization<E> implements Simple<E> {
 
     @Override
     public void add(int index, E element) {
-        Objects.checkIndex(index,size+1);
-        Node<E> newNode = new Node<>(element);
+        Objects.checkIndex(index, size + 1);
+        MyLinkedRealize.Node<E> newNode = new MyLinkedRealize.Node<>(element);
         if (first == null) {
             first = last = newNode;
         } else if (index == 0) {
@@ -41,9 +41,9 @@ public class LinkedRealization<E> implements Simple<E> {
         } else if (index == size) {
             last.next = newNode;
             last = newNode;
-        }else{
-            Node<E> current = first;
-            for (int i = 0; i<index;i++){
+        } else {
+            MyLinkedRealize.Node<E> current = first;
+            for (int integer = 0; integer < index; integer++) {
                 current = current.next;
             }
             newNode.next = current.next;
@@ -53,17 +53,18 @@ public class LinkedRealization<E> implements Simple<E> {
     }
 
     @Override
-    public boolean remove(Object o) {
+    public boolean remove(Object object) {
         return false;
     }
 
     @Override
     public void remove(int index) {
-        Objects.checkIndex(index,size+1);
-        if
-        Node<E> current = first;
-        for (int i = 0; i<index;i++){
-            current = current.next;
+        Objects.checkIndex(index, size + 1);
+        if (index > 2) {
+            MyLinkedRealize.Node<E> current = first;
+            for (int integer = 0; integer < index; integer++) {
+                current = current.next;
+            }
         }
     }
 
@@ -93,12 +94,12 @@ public class LinkedRealization<E> implements Simple<E> {
     }
 
     @Override
-    public boolean contains(E e) {
+    public boolean contains(E element) {
         return false;
     }
 
     @Override
-    public int indexOf(Object o) {
+    public int indexOf(Object object) {
         return 0;
     }
 
