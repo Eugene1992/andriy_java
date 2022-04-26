@@ -3,7 +3,24 @@ package homeworks.list;
 import java.util.Iterator;
 import java.util.Objects;
 
-public class MyLinkedRealize<E> implements Simple<E> {
+public class MyLinkedRealize<E> implements MyMethod<E> {
+    @Override
+    public Iterator<E> iterator() {
+        return new Iterator<E>() {
+            int startIndex = 0;
+
+            @Override
+            public boolean hasNext() {
+                return startIndex < size;
+            }
+
+            @Override
+            public E next() {
+                return getNodeByIndex(startIndex++).element;
+            }
+        };
+    }
+
     static class Node<E> {
         E element;
         MyLinkedRealize.Node<E> next;
@@ -42,69 +59,113 @@ public class MyLinkedRealize<E> implements Simple<E> {
             last.next = newNode;
             last = newNode;
         } else {
-            MyLinkedRealize.Node<E> current = first;
-            for (int integer = 0; integer < index; integer++) {
-                current = current.next;
-            }
-            newNode.next = current.next;
-            current.next = newNode;
+            Node<E> prev = getNodeByIndex(index - 1);
+            newNode.next = prev.next;
+            prev.next = newNode;
         }
         size++;
     }
 
+    private Node<E> getNodeByIndex(int index) {
+        MyLinkedRealize.Node<E> current = first;
+        for (int integer = 0; integer < index; integer++) {
+            current = current.next;
+        }
+        return current;
+    }
+
     @Override
     public boolean remove(Object object) {
+        MyLinkedRealize.Node<E> current = first;
+        for (int index = 0; index <= size; index++) {
+            E removeElement;
+            if (object.equals(current)) {
+                if (index == size - 1) {
+                    Node<E> prev = getNodeByIndex(index - 1);
+                    last = prev;
+                } else {
+                    removeByIndex(index);
+                }
+                size--;
+                return true;
+            }
+        }
         return false;
     }
 
     @Override
-    public void remove(int index) {
+    public E remove(int index) {
         Objects.checkIndex(index, size + 1);
-        if (index > 2) {
-            MyLinkedRealize.Node<E> current = first;
-            for (int integer = 0; integer < index; integer++) {
-                current = current.next;
-            }
+        E removeElement = removeByIndex(index);
+        size--;
+        return removeElement;
+    }
+
+    public E removeByIndex(int index) {
+        E removeElement;
+        if (index == 0) {
+            removeElement = first.element;
+            first = first.next;
+        } else {
+            Node<E> prev = getNodeByIndex(index - 1);
+            removeElement = prev.next.element;
+            prev.next = prev.next.next;
         }
+        return removeElement;
     }
 
     @Override
     public E get(int index) {
-        return null;
+        Objects.checkIndex(index, size);
+        return getNodeByIndex(index).element;
     }
 
     @Override
     public void set(int index, E element) {
-
+        Objects.checkIndex(index, size);
+        Node<E> node = getNodeByIndex(index);
+        node.element = element;
     }
 
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return first == null;
     }
 
     @Override
     public void clear() {
-
+        first = last = null;
+        size = 0;
     }
 
     @Override
     public boolean contains(E element) {
+        Node<E> current = first;
+        for (int integer = 0; integer < size; integer++) {
+            if (current.element.equals(element)) {
+                return true;
+            }
+            current = current.next;
+        }
         return false;
     }
 
     @Override
     public int indexOf(Object object) {
-        return 0;
+        MyLinkedRealize.Node<E> current = first;
+        for (int integer = 0; integer < size; integer++) {
+            if (current.equals(object)) {
+                return integer;
+            } else {
+                current = current.next;
+            }
+        }
+        return -1;
     }
 
-    @Override
-    public Iterator<E> iterator() {
-        return null;
-    }
 }
