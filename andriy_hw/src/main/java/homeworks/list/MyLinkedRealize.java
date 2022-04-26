@@ -1,7 +1,6 @@
 package homeworks.list;
 
 import java.util.Iterator;
-import java.util.Objects;
 
 public class MyLinkedRealize<E> implements MyMethod<E> {
     @Override
@@ -48,7 +47,7 @@ public class MyLinkedRealize<E> implements MyMethod<E> {
 
     @Override
     public void add(int index, E element) {
-        Objects.checkIndex(index, size + 1);
+        checkIndex(index, size + 1);
         MyLinkedRealize.Node<E> newNode = new MyLinkedRealize.Node<>(element);
         if (first == null) {
             first = last = newNode;
@@ -81,8 +80,7 @@ public class MyLinkedRealize<E> implements MyMethod<E> {
             E removeElement;
             if (object.equals(current)) {
                 if (index == size - 1) {
-                    Node<E> prev = getNodeByIndex(index - 1);
-                    last = prev;
+                    last = getNodeByIndex(index - 1);
                 } else {
                     removeByIndex(index);
                 }
@@ -95,10 +93,16 @@ public class MyLinkedRealize<E> implements MyMethod<E> {
 
     @Override
     public E remove(int index) {
-        Objects.checkIndex(index, size + 1);
+        checkIndex(index, size + 1);
         E removeElement = removeByIndex(index);
         size--;
         return removeElement;
+    }
+
+    public void checkIndex(int index, int size) {
+        if (index > size) {
+            throw new IndexOutOfBoundsException();
+        }
     }
 
     public E removeByIndex(int index) {
@@ -116,13 +120,13 @@ public class MyLinkedRealize<E> implements MyMethod<E> {
 
     @Override
     public E get(int index) {
-        Objects.checkIndex(index, size);
+        checkIndex(index, size);
         return getNodeByIndex(index).element;
     }
 
     @Override
     public void set(int index, E element) {
-        Objects.checkIndex(index, size);
+        checkIndex(index, size);
         Node<E> node = getNodeByIndex(index);
         node.element = element;
     }
