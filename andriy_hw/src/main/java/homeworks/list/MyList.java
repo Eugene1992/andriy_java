@@ -1,6 +1,6 @@
 package homeworks.list;
 
-public interface MyMethod<E> extends Iterable<E> {
+public interface MyList<E> extends Iterable<E> {
     void add(E element);
 
     void add(int index, E element);

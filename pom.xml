@@ -23,27 +23,6 @@
             <!-- ======================================================== -->
             <!--                  maven-checkstyle-plugin                 -->
             <!-- ======================================================== -->
-            <!--            <plugin>
-                            <groupId>org.apache.maven.plugins</groupId>
-                            <artifactId>maven-checkstyle-plugin</artifactId>
-                            <version>2.17</version>
-                            <executions>
-                                <execution>
-                                    <id>validate</id>
-                                    <goals>
-                                        <goal>check</goal>
-                                    </goals>
-                                    <phase>validate</phase>
-                                    <configuration>
-                                        <configLocation>general_checks.xml</configLocation>
-                                        <suppressionsLocation>checkstyle-suppressions.xml</suppressionsLocation>
-                                        <encoding>UTF-8</encoding>
-                                        <consoleOutput>true</consoleOutput>
-                                        <failsOnError>true</failsOnError>
-                                    </configuration>
-                                </execution>
-                            </executions>
-                        </plugin>-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
@@ -74,6 +53,37 @@
                     </dependency>
                 </dependencies>
             </plugin>
+            <!-- ======================================================== -->
+            <!--                  maven-pmd-plugin                 -->
+            <!-- ======================================================== -->
+            <!--<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <rulesets>
+                        <ruleset>../pmd-ruleset.xml</ruleset>
+                    </rulesets>
+                    <printFailingErrors>true</printFailingErrors>
+                    <failOnViolation>true</failOnViolation>
+                    <targetJdk>1.8</targetJdk>
+                    <includeTests>false</includeTests>
+                    <outputEncoding>UTF-8</outputEncoding>
+                    <language>java</language>
+                    <linkXRef>false</linkXRef>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>analyze-compile</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>check</goal>
+                            <goal>pmd</goal>
+                            <goal>cpd</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>-->
         </plugins>
     </build>
 </project>

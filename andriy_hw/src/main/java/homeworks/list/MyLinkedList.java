@@ -2,7 +2,7 @@ package homeworks.list;
 
 import java.util.Iterator;
 
-public class MyLinkedRealize<E> implements MyMethod<E> {
+public class MyLinkedList<E> implements MyList<E> {
     @Override
     public Iterator<E> iterator() {
         return new Iterator<E>() {
@@ -20,22 +20,12 @@ public class MyLinkedRealize<E> implements MyMethod<E> {
         };
     }
 
-    static class Node<E> {
-        E element;
-        MyLinkedRealize.Node<E> next;
-
-        public Node(E element) {
-            this.element = element;
-        }
-    }
-
-    private MyLinkedRealize.Node<E> first;
-    private MyLinkedRealize.Node<E> last;
-    private int size;
+    private MyLinkedList.Node<E> first;
+    private MyLinkedList.Node<E> last;
 
     @Override
     public void add(E element) {
-        MyLinkedRealize.Node<E> newNode = new MyLinkedRealize.Node<>(element);
+        MyLinkedList.Node<E> newNode = new MyLinkedList.Node<>(element);
         if (first == null) {
             first = last = newNode;
         } else {
@@ -45,10 +35,12 @@ public class MyLinkedRealize<E> implements MyMethod<E> {
         size++;
     }
 
+    private int size;
+
     @Override
     public void add(int index, E element) {
         checkIndex(index, size + 1);
-        MyLinkedRealize.Node<E> newNode = new MyLinkedRealize.Node<>(element);
+        MyLinkedList.Node<E> newNode = new MyLinkedList.Node<>(element);
         if (first == null) {
             first = last = newNode;
         } else if (index == 0) {
@@ -66,7 +58,7 @@ public class MyLinkedRealize<E> implements MyMethod<E> {
     }
 
     private Node<E> getNodeByIndex(int index) {
-        MyLinkedRealize.Node<E> current = first;
+        MyLinkedList.Node<E> current = first;
         for (int integer = 0; integer < index; integer++) {
             current = current.next;
         }
@@ -75,7 +67,7 @@ public class MyLinkedRealize<E> implements MyMethod<E> {
 
     @Override
     public boolean remove(Object object) {
-        MyLinkedRealize.Node<E> current = first;
+        MyLinkedList.Node<E> current = first;
         for (int index = 0; index <= size; index++) {
             E removeElement;
             if (object.equals(current)) {
@@ -89,6 +81,19 @@ public class MyLinkedRealize<E> implements MyMethod<E> {
             }
         }
         return false;
+    }
+
+    @Override
+    public int indexOf(Object object) {
+        MyLinkedList.Node<E> current = first;
+        for (int integer = 0; integer < size; integer++) {
+            if (current.equals(object)) {
+                return integer;
+            } else {
+                current = current.next;
+            }
+        }
+        return -1;
     }
 
     @Override
@@ -159,17 +164,13 @@ public class MyLinkedRealize<E> implements MyMethod<E> {
         return false;
     }
 
-    @Override
-    public int indexOf(Object object) {
-        MyLinkedRealize.Node<E> current = first;
-        for (int integer = 0; integer < size; integer++) {
-            if (current.equals(object)) {
-                return integer;
-            } else {
-                current = current.next;
-            }
+    static class Node<E> {
+        E element;
+        MyLinkedList.Node<E> next;
+
+        public Node(E element) {
+            this.element = element;
         }
-        return -1;
     }
 
 }

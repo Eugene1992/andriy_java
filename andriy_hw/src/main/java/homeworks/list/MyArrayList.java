@@ -2,7 +2,7 @@ package homeworks.list;
 
 import java.util.Iterator;
 
-public class MyArrayList<E> implements MyMethod<E> {
+public class MyArrayList<E> implements MyList<E> {
 
     private E[] values;
     private int size;
