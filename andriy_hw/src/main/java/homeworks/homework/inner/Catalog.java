@@ -26,8 +26,7 @@ public class Catalog {
         public Book(String name, String catalogId) {
             this.name = name;
             this.catalogId = catalogId;
-            isTaken = false;
-            history = new StringBuilder();
+            this.history = new StringBuilder();
         }
     }
 

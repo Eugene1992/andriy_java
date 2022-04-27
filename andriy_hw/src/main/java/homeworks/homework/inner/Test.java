@@ -27,8 +27,8 @@ public class Test {
         Mobile mobile = new Mobile();
         System.out.println("What you wanna do?");
         System.out.println("1-Characterictik phone?" + "2-Model Phone" + "3-what cost");
-        mobile.models.add(new Mobile.Model("Iphone", Mobile.Type.Flagman, 1200, 6000, 20));
-        mobile.models.add(new Mobile.Model("Xiaomi", Mobile.Type.Budgetary, 200, 3000, 5));
+        mobile.models.add(new Mobile.Model("Iphone", Mobile.Type.FLAGMAN, 1200, 6000, 20));
+        mobile.models.add(new Mobile.Model("Xiaomi", Mobile.Type.BUDGETARY, 200, 3000, 5));
         String whatYouWannaDo = scanner.nextLine();
         if (whatYouWannaDo.equals("1")) {
             System.out.println("Whrite what phone you wanna see");
@@ -50,9 +50,9 @@ public class Test {
         System.out.println("1-What the time you work?" + " " + "2-Access atraction" + " " + "3-what cost");
         System.out.println("4-Select and give your budget and we recomend you what atract select");
         String whatDo = scanner.nextLine();
-        park.actractions.add(new Park.Actraction("Swings", Park.Type.LITE, "15 min", 300));
-        park.actractions.add(new Park.Actraction("Roller coaster", Park.Type.EXTREAM, "10", 500));
-        park.actractions.add(new Park.Actraction("Train", Park.Type.LITE, "12", 300));
+        park.actractions.add(new Park.Attraction("Swings", Park.Type.LITE, "15 min", 300));
+        park.actractions.add(new Park.Attraction("Roller coaster", Park.Type.EXTREME, "10", 500));
+        park.actractions.add(new Park.Attraction("Train", Park.Type.LITE, "12", 300));
 
         if (whatYouWannaDo.equals("1")) {
             Park.Time time = park.new Time();

@@ -6,8 +6,8 @@ public class Mobile {
     protected ArrayList<Mobile.Model> models = new ArrayList<>();
 
     enum Type {
-        Flagman,
-        Budgetary
+        FLAGMAN,
+        BUDGETARY
     }
 
     public static class Model {

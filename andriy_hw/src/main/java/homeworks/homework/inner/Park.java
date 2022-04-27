@@ -2,28 +2,28 @@ package homeworks.homework.inner;
 
 import java.util.ArrayList;
 
+import homeworks.homework.utils.Utils;
+
 public class Park {
-    protected ArrayList<Actraction> actractions = new ArrayList<>();
+    protected ArrayList<Attraction> actractions = new ArrayList<>();
 
     enum Type {
-        EXTREAM,
+        EXTREME,
         LITE
     }
 
-    public static class Actraction {
+    public static class Attraction {
         private String name;
         private Type type;
         private boolean isAccess;
         private String time;
         private int money;
 
-        public Actraction(String name, Type type, String time, int money) {
+        public Attraction(String name, Type type, String time, int money) {
             this.name = name;
             this.type = type;
             this.time = time;
             this.money = money;
-            isAccess = false;
-
         }
     }
 
@@ -36,7 +36,7 @@ public class Park {
 
     class Return {
         public void returnAtract() {
-            for (Park.Actraction myAtract : actractions) {
+            for (Attraction myAtract : actractions) {
                 System.out.println(myAtract);
             }
         }
@@ -57,7 +57,7 @@ public class Park {
             int moneyCustomer = moneyHaveCustomer;
             if (moneyHaveCustomer >= 300) {
                 while (moneyHaveCustomer >= 300) {
-                    Integer randomIndex = (int) (Math.random() * 2 + 1);
+                    Integer randomIndex = Utils.getRandomIntByRange(1, 2);
                     if (randomIndex.equals(1)) {
                         moneyHaveCustomer = moneyHaveCustomer - 300;
                         lite++;
