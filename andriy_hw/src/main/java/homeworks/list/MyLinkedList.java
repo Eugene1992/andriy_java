@@ -84,6 +84,14 @@ public class MyLinkedList<E> implements MyList<E> {
     }
 
     @Override
+    public E remove(int index) {
+        checkIndex(index, size + 1);
+        E removeElement = removeByIndex(index);
+        size--;
+        return removeElement;
+    }
+
+    @Override
     public int indexOf(Object object) {
         MyLinkedList.Node<E> current = first;
         for (int integer = 0; integer < size; integer++) {
@@ -94,14 +102,6 @@ public class MyLinkedList<E> implements MyList<E> {
             }
         }
         return -1;
-    }
-
-    @Override
-    public E remove(int index) {
-        checkIndex(index, size + 1);
-        E removeElement = removeByIndex(index);
-        size--;
-        return removeElement;
     }
 
     public void checkIndex(int index, int size) {
