@@ -2,7 +2,7 @@ package homeworks.list;
 
 public class Test {
     public static void main(String[] args) {
-        MyLinkedRealize<String> list = new MyLinkedRealize<>();
+        MyLinkedList<String> list = new MyLinkedList<>();
         list.add(0,"1");
         list.add(1,"1");
         list.add(2,"3");
