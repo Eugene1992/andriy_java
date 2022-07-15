@@ -16,12 +16,10 @@ public class Human {
         this.age = age;
     }
 
-
     public Human(String name, String address) {
         this.name = name;
         this.address = address;
     }
-
 
     private Human(String name, int age, int salary, String address) {
         this.name = name;

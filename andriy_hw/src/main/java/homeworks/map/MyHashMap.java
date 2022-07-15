@@ -1,62 +1,222 @@
 package homeworks.map;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
 public class MyHashMap<K, V> implements MyMap<K, V> {
+    private int size;
+    private Node<K, V>[] buckets;
+    static final int DEFAULT_INITIAL_CAPACITY = 16;
+    static final float DEFAULT_LOAD_FACTOR = 0.75f;
+
+   public MyHashMap() {
+        this.buckets = new Node[DEFAULT_INITIAL_CAPACITY];
+    }
+
+    private int getBucketSize() {
+        return buckets.length - 1;
+    }
 
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return size == 0;
     }
 
     @Override
     public boolean containsKey(Object key) {
+        if (key == null) {
+            return false;
+        }
+        int hashPoz = getHash(key) % getBucketSize();
+        if (buckets[hashPoz] == null) {
+            return false;
+        }
+        for (Node node : buckets) {
+            if (node.key.equals(key)) {
+                return true;
+            }
+        }
         return false;
     }
 
     @Override
     public boolean containsValue(Object value) {
+        if (value == null) {
+            return false;
+        }
+        for (Node<K, V> element : buckets) {
+            while (element.value.equals(value)) {
+                put(element.key, element.value);
+                element = element.next;
+            }
+        }
         return false;
     }
 
     @Override
     public V get(Object key) {
+        Node<K, V> bucket = buckets[getHash(key) % getBucketSize()];
+        while (bucket != null) {
+            if (bucket.key.equals(key)) {
+                return bucket.value;
+            }
+            bucket = bucket.next;
+        }
         return null;
+    }
+
+    public void resize() {
+        Node<K, V>[] old = buckets;
+        int capacity = DEFAULT_INITIAL_CAPACITY * 2;
+        size = 0;
+        buckets = new Node[capacity];
+        for (Node<K, V> element : old) {
+            while (element != null) {
+                put(element.key, element.value);
+                element = element.next;
+            }
+        }
+    }
+
+    private int getHash(Object key) {
+        if (key == null) {
+            return 0;
+        } else {
+            return Math.abs(key.hashCode());
+        }
     }
 
     @Override
     public V put(K key, V value) {
-        return null;
+        if (size >= DEFAULT_LOAD_FACTOR * DEFAULT_INITIAL_CAPACITY) {
+            resize();
+        }
+        Node<K, V> node = new Node<>(key, value, null);
+        int bucket = getHash(key) % getBucketSize();
+        Node<K, V> existing = buckets[bucket];
+        if (existing == null) {
+            buckets[bucket] = node;
+            size++;
+        } else {
+            // порівнюю ключі, дізнаючись чи він вже існує
+            while (existing.next != null) {
+                if (existing.key.equals(key)) {
+                    existing.value = value;
+                }
+                existing = existing.next;
+            }
+            if (existing.key.equals(key)) {
+                existing.value = value;
+            } else {
+                existing.next = node;
+                size++;
+            }
+        }
+        return value;
+    }
+
+    final Node<K, V> removeEntryForKey(Object key) {
+        int hash = getHash(key);
+        int hashPoz = getHash(key) % getBucketSize();
+        Node<K, V> prev = buckets[hashPoz];
+        Node<K, V> element = prev;
+        while (element != null) {
+            Node<K, V> next = element.next;
+            Object kek;
+            if (element.hash == hash && ((kek = element.key) == key || (key != null && key.equals(kek)))) {
+                size--;
+                if (prev == element) {
+                    buckets[hashPoz] = next;
+                } else {
+                    prev.next = next;
+                    return element;
+                }
+            }
+            prev = element;
+            element = next;
+        }
+        return element;
     }
 
     @Override
     public V remove(Object key) {
-        return null;
+        Node<K, V> removeElement = removeEntryForKey(key);
+        if (key == null && removeElement == null) {
+            return null;
+        }
+        int hashPoz = getHash(key) % getBucketSize();
+        if (buckets[hashPoz] == null) {
+            return null;
+        }
+        return removeElement.value;
     }
 
     @Override
     public void putAll(MyMap<? extends K, ? extends V> map) {
-
+        List<? extends Node<? extends K, ? extends V>> nodes = map.entrySet();
+        for (Node<? extends K, ? extends V> node : nodes) {
+            this.put(node.key, node.value);
+        }
     }
 
     @Override
     public void clear() {
-
+        Node<K, V>[] tab;
+        if ((tab = buckets) != null && size > 0) {
+            size = 0;
+            for (int integer = 0; integer < tab.length; integer++) {
+                tab[integer] = null;
+            }
+        }
     }
 
     @Override
     public List<K> keySet() {
-        return null;
+        List<Node<K, V>> nodes = entrySet();
+        K keys;
+        ArrayList<K> kList = new ArrayList<>();
+        for (Node<K, V> node : nodes) {
+            keys = node.key;
+            kList.add(keys);
+        }
+        return kList;
     }
 
     @Override
     public Collection<V> values() {
-        return null;
+        List<Node<K, V>> nodes = entrySet();
+        V values;
+        ArrayList<V> kList = new ArrayList<>();
+        for (Node<K, V> node : nodes) {
+            values = node.value;
+            kList.add(values);
+        }
+        return kList;
+    }
+
+    @Override
+    public List<Node<K, V>> entrySet() {
+        return Arrays.asList(buckets);
+    }
+
+    public static class Node<K, V> {
+        int hash;
+        K key;
+        V value;
+        Node<K, V> next;
+
+        public Node(K key, V value, Node<K, V> next) {
+            this.key = key;
+            this.value = value;
+            this.next = next;
+        }
     }
 }
+

@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.List;
 
 public interface MyMap<K, V> {
+
     int size();
 
     boolean isEmpty();
@@ -26,4 +27,6 @@ public interface MyMap<K, V> {
     List<K> keySet();
 
     Collection<V> values();
+
+    List<MyHashMap.Node<K, V>> entrySet();
 }

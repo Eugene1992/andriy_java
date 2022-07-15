@@ -4,38 +4,43 @@ import java.util.Iterator;
 
 public class MyArrayList<E> implements MyList<E> {
 
-    private E[] values;
+    private Object[] values;
     private int size;
 
     private static final int DEFAULT_CAPACITY = 10;
 
     MyArrayList() {
-        values = (E[]) new Object[DEFAULT_CAPACITY];
+        values = new Object[DEFAULT_CAPACITY];
+    }
+
+    private void resize() {
+        if (values.length == size) {
+            Object[] newArray = new Object[values.length * 2];
+            System.arraycopy(values, 0, newArray, 0, size);
+            values = newArray;
+        }
+    }
+
+    private void checkIndex(int index) {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException();
+        }
     }
 
     @Override
     public void add(E element) {
-        arrayCopy();
-        values[size++] = element;
+        resize();
+        values[size] = element;
+        size++;
     }
 
     @Override
     public void add(int index, E element) {
-        if (index >= 0) {
-            arrayCopy();
-            for (int integer = values.length; integer > index; integer--) {
-                values[integer] = values[integer - 1];
-            }
-            values[index] = element;
-        }
-    }
-
-    public void arrayCopy() {
-        if (values.length == size) {
-            Object[] newArray = new Object[values.length * 2];
-            System.arraycopy(values, 0, newArray, 0, size);
-            values = (E[]) newArray;
-        }
+        checkIndex(index - 1);
+        resize();
+        System.arraycopy(values, index, values, index + 1, size - index);
+        values[index] = element;
+        size++;
     }
 
     @Override
@@ -45,6 +50,7 @@ public class MyArrayList<E> implements MyList<E> {
                 for (int temp = integer; temp < values.length - 1; temp++) {
                     values[temp] = values[temp + 1];
                     values[values.length] = null;
+                    size--;
                 }
                 return true;
             }
@@ -53,19 +59,17 @@ public class MyArrayList<E> implements MyList<E> {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public E remove(int index) {
-        if (index >= 0) {
-            while (index < values.length - 1) {
-                values[index] = values[index + 1];
-                index++;
-            }
-        } else {
-            System.out.println("This index is too small");
-        }
-        return null;
+        checkIndex(index);
+        E removedElement = (E) values[index];
+        System.arraycopy(values, index + 1, values, index, values.length - index - 1);
+        size--;
+        return removedElement;
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public E get(int index) {
         return (E) values[index];
     }
@@ -102,7 +106,7 @@ public class MyArrayList<E> implements MyList<E> {
     @Override
     public void clear() {
         size = 0;
-
+        values = new Object[DEFAULT_CAPACITY];
     }
 
     @Override
@@ -124,8 +128,23 @@ public class MyArrayList<E> implements MyList<E> {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public Iterator<E> iterator() {
-        return new ArrayIterator<>(values);
+        return new ArrayIterator<>((E[]) values);
     }
 
+    public static class NodeIterator<E> implements Iterator<E> {
+        private int index = 0;
+        private E[] values;
+
+        @Override
+        public boolean hasNext() {
+            return index < values.length;
+        }
+
+        @Override
+        public E next() {
+            return values[index++];
+        }
+    }
 }

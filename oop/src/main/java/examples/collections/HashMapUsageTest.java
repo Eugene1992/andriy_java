@@ -31,7 +31,6 @@ public class HashMapUsageTest {
         return null;
     }
 
-
     static class Person {
         private String name;
         private Integer idCardNum;

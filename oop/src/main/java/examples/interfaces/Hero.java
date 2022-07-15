@@ -5,5 +5,4 @@ public abstract class Hero implements Attackable {
     protected int hp;
     protected int attack;
 
-
 }

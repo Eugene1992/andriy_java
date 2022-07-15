@@ -22,6 +22,7 @@ public class MyLinkedList<E> implements MyList<E> {
 
     private MyLinkedList.Node<E> first;
     private MyLinkedList.Node<E> last;
+    private int size;
 
     @Override
     public void add(E element) {
@@ -34,8 +35,6 @@ public class MyLinkedList<E> implements MyList<E> {
         }
         size++;
     }
-
-    private int size;
 
     @Override
     public void add(int index, E element) {
@@ -69,7 +68,6 @@ public class MyLinkedList<E> implements MyList<E> {
     public boolean remove(Object object) {
         MyLinkedList.Node<E> current = first;
         for (int index = 0; index <= size; index++) {
-            E removeElement;
             if (object.equals(current)) {
                 if (index == size - 1) {
                     last = getNodeByIndex(index - 1);
