@@ -11,7 +11,7 @@ class MyListTest {
 
     @BeforeEach
     public void setUp() {//linked
-        this.myList = new MyArrayList<>();
+        this.myList = new MyLinkedList<>();
         for (int i = 0; i < DEFAULT_SIZE; i++) {
             myList.add(String.valueOf(i));
         }
@@ -72,7 +72,8 @@ class MyListTest {
 
     @Test
     void contains() {
-        boolean isContainsZeroValue = myList.contains("0");
+        myList.add(1, "testOpaF5");
+        boolean isContainsZeroValue = myList.contains("testOpaF5");
         Assertions.assertTrue(isContainsZeroValue, "");
     }
 

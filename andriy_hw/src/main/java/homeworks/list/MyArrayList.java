@@ -49,7 +49,6 @@ public class MyArrayList<E> implements MyList<E> {
             if (object.equals(values[integer])) {
                 for (int temp = integer; temp < values.length - 1; temp++) {
                     values[temp] = values[temp + 1];
-                    values[values.length] = null;
                     size--;
                 }
                 return true;

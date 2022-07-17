@@ -23,7 +23,6 @@ public interface MyMap<K, V> {
 
     void clear();
 
-    // ignore
     List<K> keySet();
 
     Collection<V> values();

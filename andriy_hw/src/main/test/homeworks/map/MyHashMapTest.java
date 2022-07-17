@@ -14,7 +14,7 @@ class MyHashMapTest {
 
     @Test
     void size() {
-        Assertions.assertEquals(DEFAULT_INITIAL_CAPACITY, map.size(), "Size should be equal to default value");
+        Assertions.assertEquals(0, map.size(), "Size should be equal to default value");
     }
 
     @Test
@@ -32,11 +32,8 @@ class MyHashMapTest {
     @Test
     void containsValue() {
         map.put(1, "opa");
-        map.put(2, "opaF5");
-        map.put(3, "ggWP");
-        for (int i = 0; i < map.size(); i++) {
-            Assertions.assertEquals("ggWP", map.get(i), "lol you dont have this value");
-        }
+        Assertions.assertEquals("opa", map.get(1));
+
     }
 
     @Test
@@ -48,7 +45,6 @@ class MyHashMapTest {
 
     @Test
     void put() {
-        Assertions.assertEquals(DEFAULT_INITIAL_CAPACITY, map.size(), "Size should be equal to default value");
         map.put(0, "1");
         String testMy = map.get(0);
         Assertions.assertEquals("1", testMy);
@@ -57,10 +53,8 @@ class MyHashMapTest {
     @Test
     void remove() {
         map.put(0, "1");
-        map.put(1, "2");
-        map.remove(0);
-        String testMy = map.get(0);
-        Assertions.assertEquals("1", testMy);
+        map.remove(0, "1");
+        Assertions.assertEquals(null, map.get(0));
     }
 
     @Test

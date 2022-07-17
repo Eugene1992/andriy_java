@@ -11,12 +11,20 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
     static final int DEFAULT_INITIAL_CAPACITY = 16;
     static final float DEFAULT_LOAD_FACTOR = 0.75f;
 
-   public MyHashMap() {
+    public MyHashMap() {
         this.buckets = new Node[DEFAULT_INITIAL_CAPACITY];
     }
 
     private int getBucketSize() {
         return buckets.length - 1;
+    }
+
+    private int getHashCode(Object key) {
+        if (key == null) {
+            return 0;
+        }
+        int bucketIndex = Math.abs(key.hashCode()) % DEFAULT_INITIAL_CAPACITY;
+        return bucketIndex;
     }
 
     @Override
@@ -147,15 +155,27 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
 
     @Override
     public V remove(Object key) {
-        Node<K, V> removeElement = removeEntryForKey(key);
-        if (key == null && removeElement == null) {
+        int keyBucket = getHashCode(key);
+        Node<K, V> temp = buckets[keyBucket];
+        if (temp == null) {
             return null;
         }
-        int hashPoz = getHash(key) % getBucketSize();
-        if (buckets[hashPoz] == null) {
-            return null;
+        Node<K, V> prev = temp;
+        while (temp != null) {
+            if (temp.key != null && temp.key.equals(key)) {
+                V valueReturn = temp.value;
+                if (prev == temp) { //first element?
+                    buckets[keyBucket] = temp.next;
+                } else {
+                    prev.next = temp.next;
+                }
+                size--;
+                return valueReturn;
+            }
+            prev = temp;
+            temp = temp.next;
         }
-        return removeElement.value;
+        return null;
     }
 
     @Override
