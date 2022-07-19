@@ -23,7 +23,7 @@ public class MyArrayList<E> implements MyList<E> {
 
     private void checkIndex(int index) {
         if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException();
+            System.out.println("man stoped, index more size or less zero");
         }
     }
 
@@ -95,7 +95,7 @@ public class MyArrayList<E> implements MyList<E> {
     @Override
     public boolean contains(E element) {
         for (int integer = 0; integer < size; integer++) {
-            if (values.equals(values[integer])) {
+            if (element.equals(values[integer])) {
                 return true;
             }
         }

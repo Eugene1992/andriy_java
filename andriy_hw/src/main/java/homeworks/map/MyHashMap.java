@@ -130,29 +130,6 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
         return value;
     }
 
-    final Node<K, V> removeEntryForKey(Object key) {
-        int hash = getHash(key);
-        int hashPoz = getHash(key) % getBucketSize();
-        Node<K, V> prev = buckets[hashPoz];
-        Node<K, V> element = prev;
-        while (element != null) {
-            Node<K, V> next = element.next;
-            Object kek;
-            if (element.hash == hash && ((kek = element.key) == key || (key != null && key.equals(kek)))) {
-                size--;
-                if (prev == element) {
-                    buckets[hashPoz] = next;
-                } else {
-                    prev.next = next;
-                    return element;
-                }
-            }
-            prev = element;
-            element = next;
-        }
-        return element;
-    }
-
     @Override
     public V remove(Object key) {
         int keyBucket = getHashCode(key);
@@ -164,7 +141,7 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
         while (temp != null) {
             if (temp.key != null && temp.key.equals(key)) {
                 V valueReturn = temp.value;
-                if (prev == temp) { //first element?
+                if (prev == temp) {
                     buckets[keyBucket] = temp.next;
                 } else {
                     prev.next = temp.next;

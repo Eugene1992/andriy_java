@@ -11,7 +11,7 @@ class MyListTest {
 
     @BeforeEach
     public void setUp() {//linked
-        this.myList = new MyLinkedList<>();
+        this.myList = new MyArrayList<>();
         for (int i = 0; i < DEFAULT_SIZE; i++) {
             myList.add(String.valueOf(i));
         }
@@ -33,16 +33,18 @@ class MyListTest {
 
     @Test
     void remove() {
-        myList.add(1, "1");
-        myList.remove(1);
-        Assertions.assertFalse(myList.isEmpty(), "Shouldn't be empty");
+        MyList<String> myEmptyList = new MyArrayList<>();
+        myEmptyList.add(0, "1");
+        myEmptyList.remove(0);
+        Assertions.assertTrue(myEmptyList.isEmpty(), "Should be empty");
     }
 
     @Test
     void testRemove() {
-        myList.add(1, "1");
-        myList.remove("1");
-        Assertions.assertFalse(myList.isEmpty(), "Shouldn't be empty");
+        MyList<String> myEmptyList = new MyArrayList<>();
+        myEmptyList.add(0, "1");
+        myEmptyList.remove("1");
+        Assertions.assertTrue(myEmptyList.isEmpty(), "Should be empty");
     }
 
     @Test
@@ -67,7 +69,13 @@ class MyListTest {
 
     @Test
     void isEmpty() {
-        Assertions.assertFalse(myList.isEmpty(), "Shouldn't be empty");
+        MyList<String> myEmptyList = new MyLinkedList<>();
+        Assertions.assertTrue(myEmptyList.isEmpty(), "Should be empty");
+        String elem = "qqq";
+        myEmptyList.add(elem);
+        Assertions.assertFalse(myEmptyList.isEmpty(), "Shouldn't be empty");
+        myEmptyList.remove(elem);
+        Assertions.assertTrue(myEmptyList.isEmpty(), "Should be empty");
     }
 
     @Test
@@ -83,7 +91,7 @@ class MyListTest {
         myList.add(2, "testOpa");
         myList.clear();
         Assertions.assertEquals(0, myList.size(), "Size should be equal to default value");
-        Assertions.assertFalse(myList.isEmpty(), "Shouldn't be empty");
+        Assertions.assertTrue(myList.isEmpty(), "Should be empty");
     }
 
     @Test

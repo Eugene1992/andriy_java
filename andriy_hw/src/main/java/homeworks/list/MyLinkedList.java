@@ -68,11 +68,18 @@ public class MyLinkedList<E> implements MyList<E> {
     public boolean remove(Object object) {
         MyLinkedList.Node<E> current = first;
         for (int index = 0; index <= size; index++) {
-            if (object.equals(current)) {
-                if (index == size - 1) {
-                    last = getNodeByIndex(index - 1);
+            if (current.equals(object)) {
+                if (index == 0) {
+                    first = first.next;
+                    if (first == null) {
+                        last = null;
+                    }
                 } else {
-                    removeByIndex(index);
+                    Node<E> prev = getNodeByIndex(index - 1);
+                    prev.next = prev.next.next;
+                    if (index == size - 1) {
+                       last = prev;
+                    }
                 }
                 size--;
                 return true;
@@ -84,7 +91,21 @@ public class MyLinkedList<E> implements MyList<E> {
     @Override
     public E remove(int index) {
         checkIndex(index, size + 1);
-        E removeElement = removeByIndex(index);
+        E removeElement;
+        if (index == 0) {
+            removeElement = first.element;
+            first = first.next;
+            if (first == null) {
+                last = null;
+            }
+        } else {
+            Node<E> prev = getNodeByIndex(index - 1);
+            removeElement = prev.next.element;
+            prev.next = prev.next.next;
+            if (index == size - 1) {
+                last = prev;
+            }
+        }
         size--;
         return removeElement;
     }
@@ -108,19 +129,6 @@ public class MyLinkedList<E> implements MyList<E> {
         }
     }
 
-    public E removeByIndex(int index) {
-        E removeElement;
-        if (index == 0) {
-            removeElement = first.element;
-            first = first.next;
-        } else {
-            Node<E> prev = getNodeByIndex(index - 1);
-            removeElement = prev.next.element;
-            prev.next = prev.next.next;
-        }
-        return removeElement;
-    }
-
     @Override
     public E get(int index) {
         checkIndex(index, size);
@@ -141,7 +149,7 @@ public class MyLinkedList<E> implements MyList<E> {
 
     @Override
     public boolean isEmpty() {
-        return first == null;
+        return size == 0;
     }
 
     @Override
