@@ -11,7 +11,7 @@ class MyListTest {
 
     @BeforeEach
     public void setUp() {//linked
-        this.myList = new MyArrayList<>();
+        this.myList = new MyLinkedList<>();
         for (int i = 0; i < DEFAULT_SIZE; i++) {
             myList.add(String.valueOf(i));
         }
@@ -33,7 +33,7 @@ class MyListTest {
 
     @Test
     void remove() {
-        MyList<String> myEmptyList = new MyArrayList<>();
+        MyList<String> myEmptyList = new MyLinkedList<>();
         myEmptyList.add(0, "1");
         myEmptyList.remove(0);
         Assertions.assertTrue(myEmptyList.isEmpty(), "Should be empty");
@@ -41,10 +41,10 @@ class MyListTest {
 
     @Test
     void testRemove() {
-        MyList<String> myEmptyList = new MyArrayList<>();
+        MyList<String> myEmptyList = new MyLinkedList<>();
         myEmptyList.add(0, "1");
         myEmptyList.remove("1");
-        Assertions.assertTrue(myEmptyList.isEmpty(), "Should be empty");
+        Assertions.assertNotEquals(myEmptyList.get(0),"1");
     }
 
     @Test

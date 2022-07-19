@@ -22,7 +22,7 @@ public class MyArrayList<E> implements MyList<E> {
     }
 
     private void checkIndex(int index) {
-        if (index < 0 || index >= size) {
+        if (index < 0 || index > size) {
             System.out.println("man stoped, index more size or less zero");
         }
     }

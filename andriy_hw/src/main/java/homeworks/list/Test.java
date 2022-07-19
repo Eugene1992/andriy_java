@@ -1,20 +1,17 @@
 package homeworks.list;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Test {
     public static void main(String[] args) {
         MyLinkedList<String> list = new MyLinkedList<>();
-        LinkedList<String> listLink = new LinkedList<>();
-        list.add(0,"2");
-        list.add(1,"1");
-        list.add(2,"3");
-        list.add(3,"1");
-        list.add(4,"7");
+        ArrayList<String> listLink = new ArrayList<>();
+        listLink.add(0,"25");
 
-        list.remove("3");
+        listLink.remove("25");
 
-        for (String listMy : list) {
+        for (String listMy : listLink) {
             System.out.println(listMy);
         }
     }
